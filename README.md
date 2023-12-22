@@ -2,7 +2,10 @@
 
 - create react app
 - configured tailwind css
-- installled postcss extension to remove tailwind css warnings
+- installed postcss extension to remove tailwind css warnings
+- Header (logo)
+- signin form
+- signup form for new users
 
 # FEATURES
 
@@ -12,7 +15,7 @@
 - redirect to browse page after authentication
   -> Browse page (comes after only authentication)
 - header
-- Main movie
+- Main
   - trailer running in bg
   - title and description
   - movie suggestions
