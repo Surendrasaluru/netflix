@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { useDispatch } from "react-redux";
+import { addUser, removeUser } from "../utils/userSlice";
+import { USERLOGO, LOGO } from "../utils/constants";
 const Header = () => {
   const navigate = useNavigate();
   const handleSignout = () => {
@@ -16,21 +20,37 @@ const Header = () => {
         navigate("/error");
       });
   };
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName } = user;
+        dispatch(addUser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+        // ...
+      } else {
+        // User is signed out
+        // ...
+        dispatch(removeUser());
+        navigate("/");
+      }
+    });
+    return () => unsubscribe();
+  }, []);
   return (
-    <div className="absolute w-screen px-3 py-2 bg-gradient-to-b from-black-400 z-2 flex justify-between">
+    <div className="  w-screen  h-[100px] px-3 py-2  bg-black bg-gradient-to-b from-black-400 z-2 flex justify-between">
       <img
-        className=" border border-black rounded-lg w-[135px]  h-[119px] opacity-[0.99]"
-        src="https://t3.ftcdn.net/jpg/05/54/84/12/240_F_554841272_8IGhPTbW9vXg9CS5F8YiTYQL68SaC0cg.jpg"
+        className=" border border-black rounded-lg w-[105px] h-[89px] opacity-[0.99] "
+        src={LOGO}
         alt="logo"
       />
-      <div className="flex m-3 p-3 ">
-        <img
-          className="w-[70px] h-12 my-3"
-          src="https://t3.ftcdn.net/jpg/05/95/82/78/240_F_595827838_L7GwV4bowXLaP6ZAARRI8K9cVtEkTqTS.jpg"
-          alt="usericon"
-        />
+      <div className=" flex justify-between  p-3 ">
+        <img className="w-[70px] h-12 my-2" src={USERLOGO} alt="usericon" />
         <button
-          className=" my-4 border border-white rounded-lg h-[35px] bg-red-700 w-[95px] text-white text-sm font-bold"
+          className="my-2 border cursor-pointer border-white rounded-lg h-[35px] bg-red-700 w-[95px] text-white text-sm font-bold"
           onClick={handleSignout}
         >
           Signout

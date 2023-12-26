@@ -14,6 +14,16 @@
   - deployed using firebase
     - create signup for first user
 - installed redux in our app
+- implemented signout and signin
+- bugfix: if user is not loggedin he cant redirect to browse and vice versa
+- registered from tmdb and created api token
+- fetching from TMDB
+- customhook for nowplaying data
+- custom hook for background video
+- movieslice created
+- trailer video data fetch
+- updated store
+- utube embed with autoply and mute
 
 # FEATURES
 

@@ -6,11 +6,10 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
-import { useNavigate } from "react-router-dom";
+import { NETFLIXBG } from "../utils/constants";
 const Login = () => {
   const [signin, setSignin] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
 
   const toggleSignin = () => {
     setSignin(!signin);
@@ -38,7 +37,6 @@ const Login = () => {
             // Signed up
             const user = userCredential.user;
             console.log(user);
-            navigate("/browse");
           })
           .catch((error) => {
             const errorCode = error.code;
@@ -56,7 +54,6 @@ const Login = () => {
             // Signed in
             const user = userCredential.user;
             console.log(user);
-            navigate("/browse");
             // ...
           })
           .catch((error) => {
@@ -71,10 +68,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute">
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/563192ea-ac0e-4906-a865-ba9899ffafad/6b2842d1-2339-4f08-84f6-148e9fcbe01b/IN-en-20231218-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="signin bg"
-        />
+        <img src={NETFLIXBG} alt="signin bg" />
       </div>
       <form
         onSubmit={(e) => e.preventDefault()}
@@ -126,6 +120,7 @@ const Login = () => {
             {signin ? "Sign up now" : "Sign in"}
           </span>
         </p>
+        <p></p>
       </form>
     </div>
   );
