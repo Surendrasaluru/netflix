@@ -24,6 +24,8 @@
 - trailer video data fetch
 - updated store
 - utube embed with autoply and mute
+- creating movie suggestions list
+-
 
 # FEATURES
 

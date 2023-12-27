@@ -41,7 +41,7 @@ const Header = () => {
     return () => unsubscribe();
   }, []);
   return (
-    <div className="  w-screen  h-[100px] px-3 py-2  bg-black bg-gradient-to-b from-black-400 z-2 flex justify-between">
+    <div className="  w-screen  h-[100px] px-3 py-2  bg-black bg-gradient-to-b from-black-400 z-2 flex justify-between bg-opacity-90">
       <img
         className=" border border-black rounded-lg w-[105px] h-[89px] opacity-[0.99] "
         src={LOGO}
