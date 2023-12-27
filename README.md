@@ -25,7 +25,9 @@
 - updated store
 - utube embed with autoply and mute
 - creating movie suggestions list
--
+- custom hooks for popular and trending lists
+- build gpt search page
+- multi language pages(Extraone)
 
 # FEATURES
 

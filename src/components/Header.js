@@ -3,9 +3,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
 import { USERLOGO, LOGO } from "../utils/constants";
+import { toggleGptSearchView } from "../utils/gptSlice";
+import { changeLanguage } from "../utils/configSlice";
 const Header = () => {
   const navigate = useNavigate();
   const handleSignout = () => {
@@ -40,14 +42,39 @@ const Header = () => {
     });
     return () => unsubscribe();
   }, []);
+
+  const handleGptSearch = () => {
+    dispatch(toggleGptSearchView());
+  };
+  const handleLangChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  };
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   return (
     <div className="  w-screen  h-[100px] px-3 py-2  bg-black bg-gradient-to-b from-black-400 z-2 flex justify-between bg-opacity-90">
       <img
-        className=" border border-black rounded-lg w-[105px] h-[89px] opacity-[0.99] "
+        className=" border border-black rounded-lg w-[125px] h-[95px] opacity-[0.99] "
         src={LOGO}
         alt="logo"
       />
+
       <div className=" flex justify-between  p-3 ">
+        {showGptSearch && (
+          <select
+            className="my-2  mx-8 px-4 border cursor-default border-black rounded-lg h-[35px] bg-purple-400 w-[105px] text-white text-sm font-semibold"
+            onChange={handleLangChange}
+          >
+            <option value="en">English</option>
+            <option value="hi">Hindi</option>
+            <option value="te">Telugu</option>
+          </select>
+        )}
+        <button
+          className="my-2  px-4 border cursor-pointer border-black rounded-lg h-[35px] bg-green-700 w-[95px] text-white text-sm font-bold"
+          onClick={handleGptSearch}
+        >
+          {showGptSearch ? "Home🏠" : "Ai Search"}
+        </button>
         <img className="w-[70px] h-12 my-2" src={USERLOGO} alt="usericon" />
         <button
           className="my-2 border cursor-pointer border-white rounded-lg h-[35px] bg-red-700 w-[95px] text-white text-sm font-bold"

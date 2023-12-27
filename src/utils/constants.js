@@ -1,5 +1,8 @@
+/*export const LOGO =
+  "https://images.ctfassets.net/y2ske730sjqp/1aONibCke6niZhgPxuiilC/2c401b05a07288746ddf3bd3943fbc76/BrandAssets_Logos_01-Wordmark.jpg?w=940";*/
+
 export const LOGO =
-  "https://images.ctfassets.net/y2ske730sjqp/1aONibCke6niZhgPxuiilC/2c401b05a07288746ddf3bd3943fbc76/BrandAssets_Logos_01-Wordmark.jpg?w=940";
+  "https://1000logos.net/wp-content/uploads/2017/05/Netflix-Logo-2000-768x461.png";
 
 export const USERLOGO =
   "https://cdn.pixabay.com/photo/2021/12/07/10/10/mask-6852866_640.png";
