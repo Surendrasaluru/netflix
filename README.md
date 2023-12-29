@@ -28,6 +28,7 @@
 - custom hooks for popular and trending lists
 - build gpt search page
 - multi language pages(Extraone)
+- keep secret info like apikeys in .env file
 
 # FEATURES
 

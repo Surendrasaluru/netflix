@@ -1,8 +1,11 @@
 import { API_OPTIONS } from "../utils/constants";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 import { useEffect } from "react";
 const useNowPlaying = () => {
+  const nowPlayingMovies = useSelector(
+    (store) => store.movies.nowPlayingMovies
+  );
   //fetching tmbb and adding to stoe
   const dispatch = useDispatch();
   const getNowPlayingMovies = async () => {
@@ -15,7 +18,7 @@ const useNowPlaying = () => {
     dispatch(addNowPlayingMovies(json.results));
   };
   useEffect(() => {
-    getNowPlayingMovies();
+    !nowPlayingMovies && getNowPlayingMovies();
   }, []);
 };
 
